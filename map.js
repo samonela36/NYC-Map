@@ -7,7 +7,7 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v11',
     center: [-73.96, 40.75],
-    zoom: 11.15,
+    zoom: 10.3,
 });
  
 const stores = 
@@ -23,8 +23,8 @@ const stores =
         "properties": {
             "title":"Alligator Lounge",
             "address":"600 Metropolitan Ave, Brooklyn, NY",
-            "description":"<p>Cheap drinks, karaoke, and free pizza. What can beat that? This is by far my favorite neighborhood dive bar, and not just because it was featured in Nathan Fielder's <em>The Rehearsal</em>. The drinks are cheap, and each one comes with a free pizza ticket. Alligator lounge also boasts a myriad of weekly events, like trivia, bingo, and my personal favorite, karaoke.</p>",
-            "image":"<img src='images/Alligator Lounge.png' style='max-width:550px;max-height:400px'></img>"
+            "description":"Cheap drinks, karaoke, and free pizza. What can beat that? This is by far my favorite neighborhood dive bar, and not just because it was featured in Nathan Fielder's <em>The Rehearsal</em>. The drinks are cheap, and each one comes with a free pizza ticket. Alligator lounge also boasts a myriad of weekly events, like trivia, bingo, and my personal favorite, karaoke.",
+            "image":"<img src='images/Alligator Lounge.png' style='max-width:600px;max-height:400px'></img>"
         }
 },
 {
@@ -36,8 +36,8 @@ const stores =
         "properties": {
             "title":"Absolute Bagels",
             "address":"2788 Broadway, NY, NY",
-            "description":"<p>Update Description</p>",
-            "image":"<img src='images/Absolute Bagels.png' style='max-width:550px;max-height:400px'></img>"
+            "description":"Every New Yorker has their favorite bagel spot. I stumbled upon this one by happy accident while doing the trek down the whole length of Manhattan. Nestled near Columbia's campus, this cash-only bagel shop is well-worth the wait. I recommend an everything bagel with garlic cream cheese, not toasted, and a cup of their thai iced tea.",
+            "image":"<img src='images/Absolute Bagels.png' style='max-width:600px;max-height:400px'></img>"
         }
     },
     {
@@ -49,8 +49,8 @@ const stores =
         "properties": {
             "title":"Gantry Plaza State Park",
             "address":"4-44 47th Rd, Queens, NY",
-            "description":"<p>Update Description</p>",
-            "image":"<img src='images/LIC.png' style='max-width:525px;max-height:400px;margin-top:30px'></img>"
+            "description":"A couple of months ago I set out on training for my first 5K. When I first started, I could barely run a mile. I attribute a lot of my progress due to my running route through this state park in Long Island City. It sits abut the East River, and its view of Manhattan's skyline makes this an ultra-popular spot to watch 4th of July Fireworks. But I recommend picnicking here on a nice day. It'll be a lot less crowded than Domino Park with the same views.",
+            "image":"<img src='images/LIC.png' style='max-width:580px;max-height:400px;margin-top:30px'></img>"
         }
     },
     {
@@ -62,8 +62,8 @@ const stores =
         "properties": {
             "title":"Citi Field",
             "address":"41 Seaver Wy, Queens, NY",
-            "description":"<p>Update Description</p>",
-            "image":"<img src='images/Citi Field.png' style='max-width:550px;max-height:400px'></img>"
+            "description":"Alright, confession, I only attend MLB games for the atmosphere. And there is no better place to take in the vibes of this fine, American sport than a Mets game at Citi Field, which won a USA Today award for 'Best Stadium Food in the US.' Fried chicken donuts, pizza bagels, and Shake Shack shakes are just a few of the options at the stadium. Plus, if you aren't feeling greasy food, Flushing is just one stop away.",
+            "image":"<img src='images/Citi Field.png' style='max-width:600px;max-height:400px'></img>"
         }
     }
 
@@ -95,7 +95,8 @@ map.on('load', () => {
     buildLocationList(stores);
     addMarkers();
 });
- 
+
+
 /**
 * Add a marker to the map for every store listing.
 **/
@@ -113,7 +114,7 @@ function addMarkers() {
         * Create a marker using the div element
         * defined above and add it to the map.
         **/
-        new mapboxgl.Marker(el, { offset: [0, -23] })
+        new mapboxgl.Marker(el, { offset: [0, -15] })
             .setLngLat(marker.geometry.coordinates)
             .addTo(map);
         
@@ -127,7 +128,7 @@ function addMarkers() {
             /* Fly to the point */
             flyToStore(marker);
             /* Close all other popups and display popup for clicked store */
-            createPopUp(marker);
+            // createPopUp(marker);
             /* Highlight listing in sidebar */
             const activeItem = document.getElementsByClassName('active');
             
@@ -185,7 +186,7 @@ function buildLocationList(stores) {
                 
                 if (this.id === `link-${feature.properties.id}`) {
                     flyToStore(feature);
-                    createPopUp(feature);
+                    // createPopUp(feature);
                     const activeItem = document.getElementsByClassName('active');
                     if (activeItem[0]) {
                         activeItem[0].classList.remove('active');
@@ -219,8 +220,7 @@ function createPopUp(currentFeature) {
         const popup = new mapboxgl.Popup({ closeOnClick: false })
         .setLngLat(currentFeature.geometry.coordinates)
         .setHTML(`
-            <h2>${currentFeature.properties.title}</h2>
-            ${currentFeature.properties.description}
+            <h4>${currentFeature.properties.title}</h4>
         `)
         .addTo(map);
     }
@@ -231,8 +231,15 @@ function addIllustration(currentFeature) {
         const image = images
             .setHTML(`
                 ${currentFeature.properties.image}
-            `)
+                <h2>${currentFeature.properties.title}</h2>
+                <p style=
+                    "text-align:left; 
+                    margin-left:20px;
+                    margin-right:20px;
+                    font-size:18px">
+                        ${currentFeature.properties.description}
+                </p>`
+            )
             .addTo(illustrations);
 }
-
 
