@@ -10,29 +10,31 @@ body {
 }
 
 .sidebar {
-    position: absolute;
-    width: 30%;
-    height: 100%;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    }
-     
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
 .map {
-    position: absolute;
-    top: 55%;
-    width: 100%;
-    height: 45%;
-    }
+  position: absolute;
+  height:50%;
+  width: 100%;
+  top: 50;
+  }
 
 .illustrations{
     position:absolute;
     justify-content: center;
     align-items: center;
     overflow: auto;
-    left: 30%;
+    left: 50%;
     height: 100%;
-    width: 70%;
     text-align:center;
+    padding: 30px;
   }
 
   h1 {
@@ -65,11 +67,11 @@ body {
 
 
   .listings {
+    height: 50%;
+    bottom:50%;
     overflow: auto;
-    width:100%;
-    height:55%;
-    bottom:45%;
-  }
+    padding-bottom: 60px;
+    }
 
   .listings .item {
     display: block;
@@ -128,7 +130,7 @@ body {
   .mapboxgl-popup-content {
     font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
     margin-left: 0;
-    max-width: 300px;
+    width: 500px;
     background-color:#60719c;
     color:white;
   }
