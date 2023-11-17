@@ -111,7 +111,7 @@ const stores =
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates":  [-73.94462657301465, 40.7176186522976]
+            "coordinates":  [-73.99807813068914, 40.71621715664297]
         },
         "properties": {
             "title":"Mei Lai Wah",
